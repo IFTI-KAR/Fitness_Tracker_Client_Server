@@ -1,100 +1,120 @@
+# Fitness Tracker
 
+**Full-Stack MERN Fitness Coaching, Class Booking & Community Platform**
 
-# 🏋️‍♂️ Fitness Tracker
+![React](https://img.shields.io/badge/React-19.1-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Express](https://img.shields.io/badge/Express-5.1-000000?style=flat-square&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-6.17-47A248?style=flat-square&logo=mongodb&logoColor=white)
+![Stripe](https://img.shields.io/badge/Stripe-Payments-635BFF?style=flat-square&logo=stripe&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-Hosting_%26_Auth-FFCA28?style=flat-square&logo=firebase&logoColor=black)
 
+Fitness Tracker is a full-stack MERN application combining trainer discovery, class enrollment, Stripe booking checkout, a vote-enabled fitness community forum, and three role-scoped dashboards (**Member**, **Trainer**, and **Admin**).
 
-
-**Live website**: [https://fitness-tracker-faf6f.web.app/](https://fitness-tracker-faf6f.web.app/)
-
-**Admin Login Credentials**
-
-* **Email:** [admin@gmail.com](mailto:admin@gmail.com)
-* **Password:** @Dmin123
-
----
-
-## ✅ About The Project
-
-Fitness Tracker is a full-stack MERN application that allows users to track their fitness journey, book trainers, enroll in classes and engage with a growing fitness community. It provides individual dashboards depending on the user’s role (Admin, Trainer or Member) and integrates various features such as Stripe payments, role-based access, JWT secured private routes, React Helmet dynamic titles and TanStack Query for efficient data fetching.
+- **Live Website:** [https://fitness-tracker-faf6f.web.app/](https://fitness-tracker-faf6f.web.app/)
 
 ---
 
-## 🌟 Key Features
+## Screenshots
 
-* 🔐 **Role-Based Authentication** (Admin / Trainer / Member) with protected routes using JWT
-* 🖥️ **Fully Responsive Design** for mobile, tablet and desktop devices
-* ⚙️ **Real-Time CRUD Operations** with toast notifications for all actions (create/update/delete)
-* 📊 **Admin Dashboard** with financial overview, newsletter subscribers and trainer management
-* 🧑‍🏫 **Trainer Portal** with slot management (add/delete) and booking info display
-* 👥 **Member Dashboard** with activity log, profile update and trainer review System
-* ⚡ **Stripe Payment Integration** for secure trainer booking payments
-* 🎬 **Forum / Community Page** with upvote/downvote functionality and dynamic badge display (Admin/Trainer)
-* 📈 **Featured Classes** section on the homepage showing the TOP 6 most booked classes (using \$sort in backend)
-* 📰 **Latest Community Posts and Newsletter Subscription** (public and saved to DB)
-* 🛠️ **TanStack Query** used across the app for all GET data fetching
-* 🧢 **Dynamic Page Titles** using `react-helmet` (e.g. Fitness Tracker | Login, Fitness Tracker | Dashboard)
-* 📨 **Applied Trainer Module** including admin approval/rejection with feedback modal system
-* 🔎 **Search functionality** in the All Classes Page with case-insensitive backend filtering
+| Landing & Featured Classes | Trainer Directory |
+| :---: | :---: |
+| ![Fitness Tracker Home](docs/screenshots/home.png) | ![Trainers](docs/screenshots/trainers.png) |
+
+| Classes Explorer | Community Forum |
+| :---: | :---: |
+| ![Classes Explorer](docs/screenshots/classes.png) | ![Community Forum](docs/screenshots/forum.png) |
 
 ---
 
-## 🛠️ Technologies Used
+## Core Features
 
-| Technology        | Usage                                                |
-| ----------------- | ---------------------------------------------------- |
-| React.js          | Front-end UI & routing (React Router)                |
-| Tailwind CSS      | Styling & visual design                              |
-| Node.js & Express | Backend server and API routes                        |
-| MongoDB           | Database for users, classes, forums and bookings     |
-| Firebase Auth     | User Authentication & JWT creation                   |
-| Stripe            | Secure payment gateway integration                   |
-| React Select      | Multi-select inputs (Trainer form / Slot management) |
-| TanStack Query    | Efficient data fetching (GET requests)               |
-| React Helmet      | Dynamic page titles                                  |
+- **Role-Based Dashboards (Admin / Trainer / Member)**: Firebase authentication paired with JWT-protected API routes and role-scoped views.
+- **Stripe Trainer Booking Checkout**: Integrated Stripe Elements checkout (`@stripe/react-stripe-js`) for paid training slot reservations.
+- **Trainer Application & Approval Workflow**: Members can apply to become trainers; Admins approve or reject applicants with structured feedback modals.
+- **Trainer Slot Management**: Trainers create and delete availability slots and inspect upcoming member bookings.
+- **Community Forum & Voting**: Upvote/downvote discussions with role badges (`Admin` / `Trainer`) and homepage community highlights.
+- **Class Explorer & Analytics**: Top-6 featured classes sorted by booking count, backend case-insensitive class search, Recharts dashboard visuals, and TanStack Query / Axios fetching.
 
 ---
 
-## 🚀 Getting Started (Local Development)
+## Tech Stack
 
-### Clone the Repositories
+| Layer | Technology |
+| :--- | :--- |
+| **Frontend** | React 19, Vite 7, React Router 7, Tailwind CSS 4, Ant Design, Flowbite, Framer Motion, Three.js, Recharts, React Select, SweetAlert2 |
+| **Payments** | Stripe (`@stripe/stripe-js`, `@stripe/react-stripe-js`, `stripe`) |
+| **Backend API** | Node.js, Express 5.1, MongoDB Driver 6.17, JWT (`jsonwebtoken`), `bcryptjs`, CORS, `dotenv` |
+| **Auth & Hosting** | Firebase Auth & Admin SDK, Firebase Hosting (`firebase.json`), Vercel (`vercel.json`) |
 
+---
+
+## Project Structure
+
+```text
+Fitness_Tracker_Client_Server/
+├── fitness_tracker_client/              # React + Vite frontend
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── contexts/                    # Auth context & JWT state
+│   │   ├── firebase/                    # Firebase config
+│   │   ├── hooks/                       # Custom role & API hooks
+│   │   ├── layouts/                     # Main & Dashboard layouts
+│   │   ├── pages/                       # Public & role dashboard pages
+│   │   ├── router/                      # Route guards & routing table
+│   │   └── utils/
+│   ├── firebase.json
+│   └── package.json
+├── Fitness_tracker_server/              # Express + MongoDB + Stripe server
+│   ├── convertKey.js                    # Firebase service account encoder
+│   ├── index.js                         # REST API & Stripe handlers
+│   ├── vercel.json
+│   └── package.json
+└── docs/screenshots/
 ```
-git clone https://github.com/IFTI-KAR/Fitness_Tracker_Client-side.git
-git clone https://github.com/IFTI-KAR/Fitness_Tracker_Server-side.git
-```
 
-### Client Setup
+---
 
-```
-cd Fitness_Tracker_Client-side
+## Demo Admin Credentials
+
+- **Email:** `admin@gmail.com`
+- **Password:** `@Dmin123`
+
+---
+
+## Local Setup
+
+### Prerequisites
+
+- Node.js 18+
+- MongoDB Atlas URI
+- Firebase project & Stripe test API keys
+
+### 1. Server Setup
+
+```bash
+git clone https://github.com/IFTI-KAR/Fitness_Tracker_Client_Server.git
+cd Fitness_Tracker_Client_Server/Fitness_tracker_server
 npm install
-# create a `.env` file and add all Firebase config with
-# REACT_APP_ prefix (do NOT commit this file)
+```
+
+Create `Fitness_tracker_server/.env` with your MongoDB URI, `JWT_SECRET`, `STRIPE_SECRET_KEY`, and Firebase Admin credentials, then run:
+
+```bash
+node index.js
+```
+
+### 2. Client Setup
+
+In a new terminal:
+
+```bash
+cd Fitness_Tracker_Client_Server/fitness_tracker_client
+npm install
+```
+
+Create `fitness_tracker_client/.env` with your `VITE_*` Firebase keys, backend API URL, and `VITE_STRIPE_PK`, then start Vite:
+
+```bash
 npm run dev
 ```
-
-### Server Setup
-
-```
-cd Fitness_Tracker_Server-side
-npm install
-# add MONGODB connection string and JWT_SECRET in a `.env` file
-npm run start
-```
-
----
-
-## 📸 Screenshots / Demo
-
-> (Add a few screenshots of your homepage, dashboard and mobile view here to showcase the UI)
-
----
-
-## 🙌 Acknowledgements
-
-Special thanks to the concept of MERN stack and open-source libraries like Tailwind, TanStack Query, Stripe, and Firebase for powering this application.
-
----
-
-If you find this project helpful, feel free to ⭐ the repository or connect with me on GitHub for future collaborations.
-
